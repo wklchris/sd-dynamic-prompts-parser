@@ -1,0 +1,25 @@
+color:
+- aqua
+- black
+- blue
+- brown
+- green
+- grey
+- orange
+- pink
+- purple
+- red
+- white
+- yellow
+cloth/dress-style:
+- collared dress
+- halter dress
+- off-shoulder dress
+- sleeveless dress
+- strapless dress
+scene:
+- '{forest|tree}'
+- grass
+- '{lake|river|pond|pool}'
+- mountains
+- '{ocean|sea}'
