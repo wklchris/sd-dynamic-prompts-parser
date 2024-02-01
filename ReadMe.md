@@ -2,6 +2,10 @@
 
 This is an unofficial Python parser for the [sd-dynamic-prompt](https://github.com/adieyal/sd-dynamic-prompts) extension's dynamic prompt syntax parsing. 
 
+- [Features](#features)
+- [Quick guide](#quick-guide)
+- [License](#license)
+
 ## Features
 
 It supports the basics of sd-dynamic-prompt syntax:
@@ -25,6 +29,11 @@ It supports the basics of sd-dynamic-prompt syntax:
   {sharp|{one|two|three}|left bracket, right paren}
   ```
   
+  Interestingly, we can use empty string as an item:
+  ```
+  a {__color__|long|} dress
+  ```
+
   - **Weights**: Optionally, weights can be assigned to items. In the process, these weights are normalized and then sent to numpy for weighted random choose.
     ```
     {0.5::red|2::blue|green}
