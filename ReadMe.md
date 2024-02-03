@@ -18,7 +18,21 @@ It supports the basics of sd-dynamic-prompt syntax:
   data = load_wildcard()
   ```
   
-  To use wildcard in the prompt, embedded it in a pair of double-underlines: `__cloth/dress-style__`.
+  If txt wildcard files are used, each line in the txt should a mixture of pure text, double-underlined wildcard (see the paragraph below), or a bracket-embedded random choice object (see next bullet point). Lines begin with `#` will be treated as comments and ignored.
+  
+  An example of txt wildcard:
+  ```
+  # Comments for dress-style.txt
+  collared dress
+  halter dress
+  off-shoulder dress
+  sleeveless dress
+  strapless dress
+  ```
+  
+  Then we can save the above lines to `dress-style.txt` in the wildcard directory (`'wildcard'` by default). To use it in the prompt, we can type `__dress-style__`.
+  
+  If a wildcard txt file is saved in a subfolder (say, `cloth` folder) of the wildcard directory, we need to include the subfolder structure before the txt filename: `__cloth/dress-style__`.
 
 * **Random choices syntax**:
   
@@ -51,13 +65,21 @@ It supports the basics of sd-dynamic-prompt syntax:
     {1-3$$red|blue|green}
     ```
     
-    Numbers to draw should be positive integers. 
+    Numbers to draw should be zero or positive integers. The following example would randomly draw 0, 1, or 2 items:
+    ```
+    {0-2$$one|two|three|four}
+    ```
 
   - **Separator**: The default separator for these items are `', '`, a comma with a space; therefore, the above example will possibly return `red, green` as a result. I preferred this separator, but it is different from the setting of the original extension. 
 
-    The separator can also be specified by the user. In this example, we would like to use `; ` as the separator:
+    The separator can also be specified by the user. In this example, we would like to use `; ` as the separator to join the 2 drawn items:
     ```
     {2$$; $$red|blue|green}
+    ```
+    
+    Whitespace separators are also allowed:
+    ```
+    {1-3$$ $$one|two|three}
     ```
 
 ## Quick guide

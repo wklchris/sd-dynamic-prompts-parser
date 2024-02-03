@@ -58,7 +58,7 @@ def init_parser():
     draw_lower = integers.set_parse_action(ppc.convert_to_integer)
     draw_upper = integers.set_parse_action(ppc.convert_to_integer)
     draw_nums = (draw_lower + pp.Optional(HYPHEN + draw_upper))
-    draw_sep = pp.Word(pp.alphanums + ',' + ' ', exclude_chars='$')
+    draw_sep = pp.Word(pp.alphanums + ',' + ' ', exclude_chars='$').leave_whitespace()
     random_pre = draw_nums + DDOLLAR + pp.Optional(draw_sep + DDOLLAR)
     weight = nums.set_parse_action(ppc.convert_to_float)
     random_item = pp.Group(pp.Optional(weight + DCOLON) + expr)
@@ -174,7 +174,7 @@ def parse_prompt(prompt: str, wildcards: dict, seed=-1, rng=None, parser=None):
     return result
 
 if __name__ == "__main__":
-    prompt = 'masterpiece, best quality, 1girl, character_name \(artwork_name\), __color__ hair, {long|short|medium} hair, {1-3$$, $$long dress|__cloth/dress-style__|__color__ dress}, looking {back|to the side|up|down|to the viewer}, (cowboy shot), from {2::behind|side|below|above}, {outdoors|indoors|__scene__}, professional lighting'
+    prompt = 'masterpiece, best quality, 1girl, character_name \(artwork_name\), __color__ hair, {long|short|medium} hair, {0-3$$, $$long dress|__cloth/dress-style__|__color__ dress}, looking {back|to the side|up|down|to the viewer}, (cowboy shot), from {2::behind|side|below|above}, {outdoors|indoors|__scene__}, professional lighting'
     wildcards = load_wildcard()
     for i in range(3):
         result = parse_prompt(prompt, wildcards)
